@@ -1,0 +1,27 @@
+.playground {
+  background-color: #0b3efd;
+  > .game {
+    > .game-row {
+      display: flex;
+      flex-wrap:wrap;
+      flex-direction:row;
+      justify-content:flex-start;
+      height: 100%;
+
+      > .column-left{
+        order: 1;
+        flex-basis: 10%;
+      }
+
+      > .column-center {
+        order: 2;
+        flex-basis: 80%;
+      }
+
+      > .column-right{
+        order: 3;
+        flex-basis: 10%;
+      }
+    }
+  }
+}

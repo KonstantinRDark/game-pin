@@ -1,0 +1,70 @@
+@base-height: 60px;
+
+.c-question-row{
+  line-height: @base-height;
+  font-size: @base-height - 20;
+  position: relative;
+  height: @base-height + 15;
+  font-weight: 700;
+
+  .front, .back {
+    color: #fff;
+    padding: 3px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: @base-height;
+    border-radius: 5px;
+    border: 3px solid black;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 0.5s;
+            transition: transform 0.5s;
+  }
+
+  .front{
+    text-align: center;
+    background-color: #daea06;
+    box-shadow: inset 0px 0px 10px 2px rgba(0, 0, 0, 0.6);
+
+    > .text{
+      padding: 0px 12px;
+      background-color: #890003;
+      font-size: 54px;
+      font-weight: 700;
+    }
+  }
+
+  .back{
+    background-color: black;
+    -webkit-transform: rotateX(-180deg);
+            transform: rotateX(-180deg);
+
+    > .text{
+      padding-left: 20px;
+    }
+
+    > .score{
+      padding-right: 20px;
+      float: right;
+    }
+
+    &:after{
+      content: ' ';
+      clear: right;
+    }
+  }
+
+  &.open {
+    > .front{
+      -webkit-transform: rotateX(-180deg);
+              transform: rotateX(-180deg);
+    }
+
+    > .back{
+      -webkit-transform: rotateY(0);
+              transform: rotateY(0);
+    }
+  }
+}

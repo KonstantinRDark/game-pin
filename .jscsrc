@@ -1,0 +1,29 @@
+{
+  "preset": "google",
+  "fileExtensions": [".js", ".jsx"],
+  "excludeFiles": [
+    "./dist/**",
+    "./build/**",
+    "./node_modules/**",
+    "./gulpfile.js"
+  ],
+  "maximumLineLength": 120,
+  "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
+  "disallowSpaceBeforeBinaryOperators": [","],
+  "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
+  "requireSpaceAfterBinaryOperators": ["?", ":", "+", "-", "/", "*", "%", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||"],
+  "requireSpaceBeforeBinaryOperators": ["?", ":", "+", "-", "/", "*", "%", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||"],
+  "requireSpaceAfterKeywords": ["if", "else", "for", "while", "do", "switch", "return", "try", "catch"],
+  "requireSpaceBeforeKeywords": [ "else", "while", "catch" ],
+
+  "disallowSpacesInsideObjectBrackets": false,
+  "requireSpacesInsideObjectBrackets": { "allExcept": [ "}", "{", "(", ")" ] },
+
+  "disallowSpacesInsideArrayBrackets": false,
+  "requireSpacesInsideArrayBrackets": { "allExcept": [ "[", "]", "{", "}" ] },
+
+  "disallowMixedSpacesAndTabs": true,
+  "disallowMultipleLineStrings": true,
+  "disallowTrailingComma": true,
+  "disallowTrailingWhitespace": false
+}

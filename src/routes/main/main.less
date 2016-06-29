@@ -1,0 +1,17 @@
+.main-page{
+  display: flex;
+  flex-wrap:nowrap;
+  flex-direction:row;
+  justify-content:flex-start;
+  height: 100%;
+
+  > .column-left{
+    order: 1;
+    flex-basis:100%;
+  }
+
+  > .column-right{
+    order: 2;
+    flex-basis:400px;
+  }
+}
