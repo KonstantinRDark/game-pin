@@ -16,9 +16,8 @@ export default class Playground extends Component {
       case STATE_WINNER: Content = this.renderWinner();
         break;
       case STATE_ANSWER:
-      case STATE_GAME: Content = this.renderGame();
-        break;
-      case STATE_CHECK: Content = this.renderCheckTeam();
+      case STATE_GAME:
+      case STATE_CHECK: Content = this.renderGame();
         break;
       default: Content = this.renderInit();
     }
