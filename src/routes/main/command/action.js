@@ -1,4 +1,11 @@
-import { ACTION_START_GAME, ACTION_SELECT_TEAM, ACTION_OPEN_ROW, ACTION_NEXT_ROUND } from './constants';
+import {
+  ACTION_START_GAME,
+  ACTION_SELECT_TEAM,
+  ACTION_OPEN_ROW,
+  ACTION_NEXT_ROUND,
+  ACTION_SWAP_TEAM,
+  ACTION_ERROR_QUESTION
+} from './constants';
 
 export const startGame = (data) => dispatch => {
   dispatch({
@@ -53,6 +60,20 @@ export const showRow = (row) => dispatch => {
 export const nextRound = () => dispatch => {
   dispatch({
     type: ACTION_NEXT_ROUND,
+    payload: {}
+  });
+};
+
+export const setError = () => dispatch => {
+  dispatch({
+    type: ACTION_ERROR_QUESTION,
+    payload: {}
+  });
+};
+
+export const toggleTeam = () => dispatch => {
+  dispatch({
+    type: ACTION_SWAP_TEAM,
     payload: {}
   });
 };

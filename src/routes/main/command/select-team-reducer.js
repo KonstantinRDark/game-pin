@@ -8,7 +8,7 @@ export default (state, nextTeam) => {
   };
 
   if (!!nowTeam) {
-    let hasFirst = firstTeam.id == nowTeam.id;
+    let hasFirst = firstTeam.id == nextTeam.id;
 
     params.teams = { $set: [
       { ...(hasFirst ? nextTeam : firstTeam) },

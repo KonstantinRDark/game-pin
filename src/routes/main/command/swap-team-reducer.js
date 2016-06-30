@@ -1,8 +1,8 @@
 import selectTeamReducer from './select-team-reducer';
 
 export default (state) => {
-  const { team, teams } = state;
-  let payload = teams[0].id !== team.id ? teams[0] : teams[1];
+  const { team, teams: [ firstTeam, secondTeam ] } = state;
+  let payload = firstTeam.id !== team.id ? firstTeam : secondTeam;
 
   return selectTeamReducer(state, payload);
 };

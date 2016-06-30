@@ -1,13 +1,34 @@
 import React, { Component } from 'react';
+import { startGame, selectTeam, showRow, nextRound, toggleTeam, setError } from './../command/action';
 import { GAME_DATA, STATE_CHECK, STATE_GAME, STATE_ANSWER, STATE_WINNER } from './../command/constants';
 import { connect } from 'react-redux';
+const disabledAttr = (condition) => {
+  let attrs = {};
+
+  if (condition) {
+    attrs.disabled = 'disabled';
+  }
+
+  return attrs;
+};
+
+const nextRoundBtn = ({ stateData:{ round: { questions } } }, onClick) => {
+  const hasAllOpen = questions.every(question => question.isOpen);
+  return (
+    <button type='button'
+            onClick={onClick}
+            { ...disabledAttr(!hasAllOpen) }>Следующий раунд</button>
+  )
+};
 
 @connect(({ [GAME_DATA]:stateData }) => ({ stateData }))
 export default class Controls extends Component {
-  startGame = () => this.props.dispatch(startGame());
-  selectTeam = (team) => this.props.dispatch(selectTeam(team));
-  showRow = (row) => this.props.dispatch(showRow(row));
-  nextRound = () => this.props.dispatch(nextRound());
+  onStartGame = () => this.props.dispatch(startGame());
+  onSelectTeam = (team) => this.props.dispatch(selectTeam(team));
+  onShowRow = (row) => this.props.dispatch(showRow(row));
+  onNextRound = () => this.props.dispatch(nextRound());
+  onToggleTeam = () => this.props.dispatch(toggleTeam());
+  onSetError = () => this.props.dispatch(setError());
 
   render() {
     const { className, stateData: { state } } = this.props;
@@ -36,18 +57,12 @@ export default class Controls extends Component {
     const { stateData:{ state, round: { questions } } } = this.props;
     return (
       <ul>
-        {questions.map(question => {
-          let attrs = {};
-
-          if (question.isOpen) {
-            attrs.disabled = 'disabled';
-          }
-
+        {questions.map((question, number) => {
           return (
             <li>
-              <span>{question.name}</span>
-              <span> [ {question.score} ] </span>
-              <button type='button' onClick={() => this.showRow(question)} {...attrs}>Открыть ответ</button>
+              <button type='button'
+                      onClick={() => this.onShowRow(question)}
+                      { ...disabledAttr(question.isOpen) }>#{number + 1} открыть</button>
             </li>
           );
         })}
@@ -66,32 +81,28 @@ export default class Controls extends Component {
   }
 
   renderAnswer() {
-    const { stateData:{ round: { questions } } } = this.props;
-    const hasAllOpen = questions.every(question => question.isOpen);
-
     return (
       <div>
         { this.renderQuestions() }
-        { !hasAllOpen ? null : (
-          <button type='button' onClick={() => this.nextRound()}>Следующий раунд</button>
-        ) }
+        { nextRoundBtn(this.props, () => this.onNextRound()) }
       </div>
     );
   }
 
   renderGame() {
-    const { stateData:{ round: { errors, questions } } } = this.props;
-    const hasAllOpen = questions.every(question => question.isOpen);
-    const hasAnswer = hasAllOpen || (errors[0] == 3 && errors[1] === 3);
-
     // TODO Продумать каак определять что можно сменить команду или нельзя
+    const { stateData:{ round: { errors } } } = this.props;
+    const hasToggleTeam = errors.every(count => count === 3 || count === 0);
 
     return (
       <div>
         { this.renderQuestions() }
-        { !hasAllOpen ? null : (
-          <button type='button' onClick={() => this.nextRound()}>Следующий раунд</button>
-        ) }
+        <button type='button'
+                onClick={() => this.onSetError()}>Ошибка</button>
+        <button type='button'
+                onClick={() => this.onToggleTeam()}
+                { ...disabledAttr(hasToggleTeam) }>Переход хода</button>
+        { nextRoundBtn(this.props, () => this.onNextRound()) }
       </div>
     );
   }
@@ -101,8 +112,8 @@ export default class Controls extends Component {
 
     return (
       <div>
-        <button type='button' onClick={() => this.selectTeam(firstTeam)}>Команда: {firstTeam.name}</button>
-        <button type='button' onClick={() => this.selectTeam(secondTeam)}>Команда: {secondTeam.name}</button>
+        <button type='button' onClick={() => this.onSelectTeam(firstTeam)}>Команда: {firstTeam.name}</button>
+        <button type='button' onClick={() => this.onSelectTeam(secondTeam)}>Команда: {secondTeam.name}</button>
       </div>
     );
   }
@@ -110,7 +121,7 @@ export default class Controls extends Component {
   renderInit() {
     return (
       <div>
-        <button type='button' onClick={this.startGame}>Начать игру</button>
+        <button type='button' onClick={this.onStartGame}>Начать игру</button>
       </div>
     );
   }

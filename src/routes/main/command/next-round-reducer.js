@@ -14,7 +14,7 @@ export default (state) => {
 
   // Определим какой команде начисялть очки и начислим их
   // Если есть хоть один ответ от текущей команды - начислим им очки
-  if (round.questions.some(question => question.isOpen && question.team.id == team.id)) {
+  if (round.questions.some(({ isOpen, team:{ id } = {} }) => isOpen && id == team.id)) {
     team = { ...team, score: team.score + round.score };
   } else {
     // Иначе начислим им очки другой команде

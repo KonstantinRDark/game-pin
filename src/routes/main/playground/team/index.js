@@ -40,6 +40,7 @@ export default class Team extends Component {
           <Score score={ score }/>
         </div>
         <div className='errors'>
+          <div>{ errors }</div>
           { arr.map((active, i) => ((<div key={ i } className={`error${active ? ' active' : '' }`}></div>))) }
         </div>
       </div>
