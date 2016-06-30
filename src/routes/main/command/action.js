@@ -1,4 +1,4 @@
-import { ACTION_START_GAME, ACTION_SELECT_TEAM, ACTION_OPEN_ROW } from './constants';
+import { ACTION_START_GAME, ACTION_SELECT_TEAM, ACTION_OPEN_ROW, ACTION_NEXT_ROUND } from './constants';
 
 export const startGame = (data) => dispatch => {
   dispatch({
@@ -47,5 +47,12 @@ export const showRow = (row) => dispatch => {
   dispatch({
     type: ACTION_OPEN_ROW,
     payload: row
+  });
+};
+
+export const nextRound = () => dispatch => {
+  dispatch({
+    type: ACTION_NEXT_ROUND,
+    payload: {}
   });
 };
