@@ -1,14 +1,15 @@
 import update from 'react/lib/update';
-import { STATE_CHECK, STATE_ANSWER, STATE_WINNER } from './constants';
+import { STATE_CHECK, STATE_WINNER } from './constants';
 import selectTeamReducer from './select-team-reducer';
 
 export default (state) => {
+  let { round, rounds, teams, team } = state;
+
   // Если следующего раунда нет или текущий статус не STATE_ANSWER - ничего не делаем
-  if (state.state !== STATE_ANSWER) {
+  if (!rounds.length || !round.questions.every(question => question.isOpen)) {
     return state;
   }
 
-  let { round, rounds, teams, team } = state;
   let hasFirst = teams[0].id == team.id;
 
   // Определим какой команде начисялть очки и начислим их
@@ -23,12 +24,14 @@ export default (state) => {
 
   round = state.rounds.shift();
   rounds = state.rounds.map(round => ({ ...round }));
+  let { teams:newTeams } = selectTeamReducer(state, team);
 
-  return Object.assign(selectTeamReducer(state, team), update(state, {
+  return update(state, {
     state: { $set: !round ? STATE_WINNER : STATE_CHECK },
     rounds: { $set: rounds },
     team: { $set: null },
+    teams: { $set: newTeams },
     winner: { $set: !round ? team : null },
     round: { $set: { ...round } }
-  }));
+  });
 };

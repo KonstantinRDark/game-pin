@@ -7,7 +7,7 @@ export default (state, payload) => {
   let { questions, score, errors, ...round } = state.round;
 
   if (state.state === STATE_GAME) {
-    score += payload.score;
+    score += payload.score * state.round.number;
   }
 
   return update(state, { round: { $set: {
