@@ -1,17 +1,14 @@
 'use strict';
-import update from 'react/lib/update';
 import {
-  GAME_DATA,
   STATE_INIT,
-  STATE_CHECK,
-  STATE_GAME,
   ACTION_START_GAME,
   ACTION_SELECT_TEAM,
   ACTION_SWAP_TEAM,
   ACTION_OPEN_ROW,
   ACTION_ERROR_QUESTION,
   ACTION_NEXT_ROUND,
-  ACTION_SHOW_WINNER,
+  ACTION_ANSWER,
+  ACTION_SHOW_WINNER
 } from './constants';
 import startGameReducer from './start-game-reducer';
 import selectTeamReducer from './select-team-reducer';
@@ -53,11 +50,15 @@ export default function (state = init, { type, payload }) {
       return errorQuestionReducer(state);
 
     // Следующий раунд
+    case ACTION_ANSWER:
+      return answerReducer(state);
+    
+    // Следующий раунд
     case ACTION_NEXT_ROUND:
       return nextRoundReducer(state);
 
     // Показать победителя
-    case showWinnerReducer:
+    case ACTION_SHOW_WINNER:
       return showWinnerReducer(state);
 
     default:

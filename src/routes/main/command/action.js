@@ -4,7 +4,8 @@ import {
   ACTION_OPEN_ROW,
   ACTION_NEXT_ROUND,
   ACTION_SWAP_TEAM,
-  ACTION_ERROR_QUESTION
+  ACTION_ERROR_QUESTION,
+  ACTION_ANSWER
 } from './constants';
 
 export const startGame = (data) => dispatch => {
@@ -67,6 +68,13 @@ export const nextRound = () => dispatch => {
 export const setError = () => dispatch => {
   dispatch({
     type: ACTION_ERROR_QUESTION,
+    payload: {}
+  });
+};
+
+export const answer = () => dispatch => {
+  dispatch({
+    type: ACTION_ANSWER,
     payload: {}
   });
 };

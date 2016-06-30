@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { startGame, selectTeam, showRow, nextRound, toggleTeam, setError } from './../command/action';
+import { startGame, selectTeam, showRow, nextRound, toggleTeam, setError, answer } from './../command/action';
 import { GAME_DATA, STATE_CHECK, STATE_GAME, STATE_ANSWER, STATE_WINNER } from './../command/constants';
 import { connect } from 'react-redux';
+import hasAnswerOnly from './../command/utils/has-answer-only';
 const disabledAttr = (condition) => {
   let attrs = {};
 
@@ -11,9 +12,22 @@ const disabledAttr = (condition) => {
 
   return attrs;
 };
+const answerBtn = ({ stateData:state }, onClick) => {
+  return (
+    <button type='button'
+            onClick={onClick}
+            { ...disabledAttr(!hasAnswerOnly(state)) }>Открываем ответы</button>
+  )
+};
 
-const nextRoundBtn = ({ stateData:{ round: { questions } } }, onClick) => {
-  const hasAllOpen = questions.every(question => question.isOpen);
+const nextRoundBtn = ({ stateData:state }, onClick) => {
+  const { round: { questions } } = state;
+  const hasAllOpen = questions.every(({ isOpen }) => isOpen);
+
+  if (hasAnswerOnly(state)) {
+    return null;  
+  }
+  
   return (
     <button type='button'
             onClick={onClick}
@@ -29,6 +43,7 @@ export default class Controls extends Component {
   onNextRound = () => this.props.dispatch(nextRound());
   onToggleTeam = () => this.props.dispatch(toggleTeam());
   onSetError = () => this.props.dispatch(setError());
+  onSetAnwer = () => this.props.dispatch(answer());
 
   render() {
     const { className, stateData: { state } } = this.props;
@@ -84,6 +99,7 @@ export default class Controls extends Component {
     return (
       <div>
         { this.renderQuestions() }
+        { answerBtn(this.props, () => this.onSetAnwer()) }
         { nextRoundBtn(this.props, () => this.onNextRound()) }
       </div>
     );

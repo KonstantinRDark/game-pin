@@ -4,12 +4,7 @@ import selectTeamReducer from './select-team-reducer';
 
 export default (state) => {
   let { round, rounds, teams, team } = state;
-
-  // Если следующего раунда нет или текущий статус не STATE_ANSWER - ничего не делаем
-  if (!rounds.length || !round.questions.every(question => question.isOpen)) {
-    return state;
-  }
-
+  
   let hasFirst = teams[0].id == team.id;
 
   // Определим какой команде начисялть очки и начислим их
