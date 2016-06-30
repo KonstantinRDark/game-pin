@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
-import {
-  startGame,
-  selectTeam,
-  showRow
-} from './../command/action';
-import {
-  GAME_DATA,
-  STATE_CHECK,
-  STATE_GAME,
-  STATE_ANSWER,
-  STATE_WINNER,
-} from './../command/constants';
-
+import { GAME_DATA, STATE_CHECK, STATE_GAME, STATE_ANSWER, STATE_WINNER } from './../command/constants';
 import { connect } from 'react-redux';
 
 @connect(({ [GAME_DATA]:stateData }) => ({ stateData }))
@@ -19,6 +7,7 @@ export default class Controls extends Component {
   startGame = () => this.props.dispatch(startGame());
   selectTeam = (team) => this.props.dispatch(selectTeam(team));
   showRow = (row) => this.props.dispatch(showRow(row));
+  nextRound = () => this.props.dispatch(nextRound());
 
   render() {
     const { className, stateData: { state } } = this.props;
@@ -79,11 +68,13 @@ export default class Controls extends Component {
   renderAnswer() {
     const { stateData:{ round: { questions } } } = this.props;
     const hasAllOpen = questions.every(question => question.isOpen);
-    const hasNextRound = !hasNextTeam;
 
     return (
       <div>
         { this.renderQuestions() }
+        { !hasAllOpen ? null : (
+          <button type='button' onClick={() => this.nextRound()}>Следующий раунд</button>
+        ) }
       </div>
     );
   }
@@ -98,6 +89,9 @@ export default class Controls extends Component {
     return (
       <div>
         { this.renderQuestions() }
+        { !hasAllOpen ? null : (
+          <button type='button' onClick={() => this.nextRound()}>Следующий раунд</button>
+        ) }
       </div>
     );
   }
