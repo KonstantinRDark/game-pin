@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  GAME_DATA,
-  STATE_CHECK,
-  STATE_GAME,
-  STATE_ANSWER,
-  STATE_WINNER,
-} from './../command/constants';
-
+import { GAME_DATA, STATE_CHECK, STATE_GAME, STATE_ANSWER, STATE_WINNER } from './../command/constants';
 import { connect } from 'react-redux';
 import Questions from './questions';
 import Scoreboard from './scoreboard';
@@ -57,16 +50,14 @@ export default class Playground extends Component {
 
     return (
       <div className='game'>
-        <div>STATE: {state}</div>
-        <Scoreboard score={ score }/>
+        <Scoreboard className='score-row' score={ score }/>
         <div className='game-row'>
           <Team className='column-left'
                 round={ roundNumber }
                 active={ team }
                 team={ leftTeam }
                 errors={ leftErrors }/>
-          <Questions className='column-center'
-                     questions={ questions }/>
+          <Questions className='column-center' questions={ questions }/>
           <Team className='column-right'
                 round={ roundNumber }
                 active={ team }

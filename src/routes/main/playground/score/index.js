@@ -6,7 +6,7 @@ export default class Score extends Component {
     score: PropTypes.number
   };
 
-  timeout = 75;
+  timeout = 10;
 
   state = {
     score: this.props.score

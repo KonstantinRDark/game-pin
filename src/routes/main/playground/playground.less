@@ -1,26 +1,47 @@
+@width-step: 1028px / 100;
+@height-step: 556px / 100;
+
 .playground {
   background-color: #0b3efd;
   > .game {
+    height: 100%;
+
+    > .score-row {
+      margin: 30px auto;
+    }
+
     > .game-row {
       display: flex;
-      flex-wrap:wrap;
+      flex-wrap:nowrap;
       flex-direction:row;
       justify-content:flex-start;
-      height: 100%;
+      height: @height-step * 100;
+      width: @width-step * 100;
+      margin: 0 auto;
+      box-shadow: inset 0 0px 10px 1px rgba(0, 0, 0, 0.8);
+      border: 5px solid black;
+
+      > .column-left, > .column-right{
+        flex-basis: 17.7%;
+        padding-top: 4.4%;
+      }
 
       > .column-left{
         order: 1;
-        flex-basis: 10%;
+        border-right: 2px solid rgb(0, 31, 146);
+        box-shadow: inset -2px 0px 10px 1px rgba(0, 0, 0, 0.7);
       }
 
       > .column-center {
         order: 2;
-        flex-basis: 80%;
+        flex-basis: 64.6%;
+        //box-shadow: inset 0 0px 10px 1px rgba(0, 0, 0, 0.7);
       }
 
       > .column-right{
         order: 3;
-        flex-basis: 10%;
+        border-left: 2px solid rgb(0, 31, 146);
+        box-shadow: inset 4px 0px 15px 1px rgba(0, 0, 0, 0.4);
       }
     }
   }

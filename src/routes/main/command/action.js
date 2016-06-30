@@ -1,12 +1,4 @@
-import {
-  ACTION_START_GAME,
-  ACTION_SELECT_TEAM,
-  ACTION_SWAP_TEAM,
-  ACTION_OPEN_ROW,
-  ACTION_ERROR_QUESTION,
-  ACTION_NEXT_ROUND,
-  ACTION_SHOW_WINNER,
-} from './constants';
+import { ACTION_START_GAME, ACTION_SELECT_TEAM, ACTION_OPEN_ROW } from './constants';
 
 export const startGame = (data) => dispatch => {
   dispatch({
@@ -16,12 +8,12 @@ export const startGame = (data) => dispatch => {
         {
           name: 'Раунд 1',
           questions: [
-            { name: 'Раунд 1 Вопрос 1', score: 6 },
-            { name: 'Раунд 1 Вопрос 2', score: 5 },
-            { name: 'Раунд 1 Вопрос 3', score: 4 },
-            { name: 'Раунд 1 Вопрос 4', score: 3 },
-            { name: 'Раунд 1 Вопрос 5', score: 2 },
-            { name: 'Раунд 1 Вопрос 6', score: 1 }
+            { name: 'Иммунитет', score: 27 },
+            { name: 'Здоровый образ жизни', score: 17 },
+            { name: 'Марлевые повязки', score: 11 },
+            { name: 'Прививки', score: 10 },
+            { name: 'Закалка', score: 7 },
+            { name: 'Витамины', score: 5 }
           ]
         },
         {

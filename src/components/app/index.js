@@ -1,11 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-
-import Header from './../header';
-import Nav from './../nav';
-import Footer from './../footer';
-import { META_BASE_TITLE, META_BASE_TITLE_TEMPLATE} from './../../constants';
+import { META_BASE_TITLE, META_BASE_TITLE_TEMPLATE } from './../../constants';
 
 export default class App extends Component {
 
