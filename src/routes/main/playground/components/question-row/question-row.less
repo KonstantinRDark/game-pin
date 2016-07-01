@@ -35,6 +35,41 @@
       text-transform: uppercase;
       display: inline-block;
     }
+
+    >.left, >.right {
+      width: 44%;
+      height: 100%;
+      position: relative;
+      > .line{
+        background-color: rgba(214, 144, 32, 0.56);
+        width: 9%;
+        position: absolute;
+        height: 100%;
+        box-shadow: inset 0px 1px 10px 0px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    >.left {
+      float: left;
+      > .line{
+        &.line-1 { right: -4px; }
+        &.line-2 { right: 34%; }
+        &.line-3 { right: 60%; }
+        &.line-4 { right: 79%; }
+        &.line-5 { right: 92%; }
+      }
+    }
+
+    >.right {
+      float: right;
+      > .line{
+        &.line-1 { left: -4px;}
+        &.line-2 { left: 34%; }
+        &.line-3 { left: 60%; }
+        &.line-4 { left: 79%; }
+        &.line-5 { left: 92%; }
+      }
+    }
   }
 
   .back{
@@ -46,7 +81,7 @@
     -webkit-transform: rotateX(-180deg);
             transform: rotateX(-180deg);
 
-    > .text{
+    > .text {
       padding-left: 20px;
     }
 
