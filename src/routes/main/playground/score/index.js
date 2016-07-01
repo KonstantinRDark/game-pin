@@ -3,7 +3,8 @@ import './score.less';
 
 export default class Score extends Component {
   static propTypes = {
-    score: PropTypes.number
+    className: PropTypes.string,
+    score    : PropTypes.number
   };
 
   timeout = 10;

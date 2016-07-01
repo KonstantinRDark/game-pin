@@ -1,4 +1,3 @@
-'use strict';
 import { RESPONSE } from './constant';
 
 const { STATUS, RESULT, SUCCESS } = RESPONSE;

@@ -1,6 +1,3 @@
-// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-'use strict';
-
 export function types(...types) {
   return (target, name, descriptor) => {
     descriptor.__action_types = types;

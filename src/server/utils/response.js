@@ -1,5 +1,3 @@
-'use strict';
-
 export const ResponseByCriteria = (list, callback) =>
   Promise.resolve(list.filter(el => callback(el)));
 

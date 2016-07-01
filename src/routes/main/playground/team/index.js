@@ -4,10 +4,11 @@ import './team.less';
 
 export default class Team extends Component {
   static propTypes = {
-    round : PropTypes.number.isRequired,
-    active: PropTypes.object,
-    team  : PropTypes.object.isRequired,
-    errors: PropTypes.number.isRequired
+    className: PropTypes.string,
+    round    : PropTypes.number.isRequired,
+    active   : PropTypes.object,
+    team     : PropTypes.object.isRequired,
+    errors   : PropTypes.number.isRequired
   };
 
   state = {

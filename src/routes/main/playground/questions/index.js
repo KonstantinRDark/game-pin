@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import './questions.less';
 import QuestionRow from './../question-row';
 
 export default class Questions extends Component {
+  static propTypes = {
+    className: PropTypes.string,
+    questions: PropTypes.array
+  };
+
   render() {
     const { className = '', questions } = this.props;
 

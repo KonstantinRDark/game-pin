@@ -1,5 +1,3 @@
-'use strict';
-
 export function dependency({ load }) {
   return (target, name, descriptor) => {
     let hasWin;

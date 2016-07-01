@@ -1,5 +1,3 @@
-'use strict';
-
 import update from 'react/lib/update';
 const init = {
   lastFetched: null,

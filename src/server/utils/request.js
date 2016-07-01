@@ -1,4 +1,3 @@
-'use strict';
 import { Router } from 'express';
 import { Error } from './error';
 import { Success } from './success';

@@ -1,4 +1,3 @@
-'use strict';
 import { preview as previewMiddleware } from './../../../utils/string/preview';
 
 export function preview(name) {

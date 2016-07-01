@@ -4,7 +4,8 @@ import './scoreboard.less';
 
 export default class Scoreboard extends Component {
   static propTypes = {
-    score: PropTypes.number
+    className: PropTypes.string,
+    score    : PropTypes.number
   };
 
   state = {

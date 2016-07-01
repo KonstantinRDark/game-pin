@@ -1,5 +1,3 @@
-'use strict';
-
 const paragraph = (text, start = 0) => {
   const tag = !!~text.indexOf('p') ? 'p' : 'div';
   const indexOf = text.indexOf(tag, start);

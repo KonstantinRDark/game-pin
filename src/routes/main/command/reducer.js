@@ -1,4 +1,3 @@
-'use strict';
 import {
   STATE_INIT,
   ACTION_START_GAME,

@@ -1,5 +1,3 @@
-'use strict';
-
 // Загрузка данных для главной страницы
 export const GAME_DATA = 'GAME_DATA';
 export const MAX_ERRORS = 3;

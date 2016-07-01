@@ -1,5 +1,3 @@
-'use strict';
-
 const STATUS = 'status';
 const RESULT = 'response';
 const SUCCESS = 'success';
