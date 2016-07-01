@@ -1,88 +1,34 @@
 import React, { Component } from 'react';
 import { GAME_DATA, STATE_CHECK, STATE_GAME, STATE_ANSWER, STATE_WINNER } from './../command/constants';
 import { connect } from 'react-redux';
-import Questions from './questions';
-import Scoreboard from './scoreboard';
-import Team from './team';
+import PlaygroundInit from './playground-init';
+import PlaygroundGame from './playground-game';
+import PlaygroundWinner from './playground-winner';
 import './playground.less';
 
 @connect(({ [ GAME_DATA ]:stateData }) => ({ stateData }))
 export default class Playground extends Component {
   render() {
-    const { className, stateData: { state } } = this.props;
-    let Content;
+    const { className, stateData } = this.props;
+    const { state } = stateData;
+    let content;
 
     switch (state) {
-      case STATE_WINNER: Content = this.renderWinner();
+      case STATE_WINNER:
+        content = (<PlaygroundWinner stateData={ stateData }/>);
         break;
       case STATE_ANSWER:
       case STATE_GAME:
-      case STATE_CHECK: Content = this.renderGame();
+      case STATE_CHECK:
+        content = (<PlaygroundGame stateData={ stateData }/>);
         break;
-      default: Content = this.renderInit();
+      default: 
+        content = (<PlaygroundInit stateData={ stateData }/>);
     }
 
     return (
       <div className={ `playground ${ className }` }>
-        { Content }
-      </div>
-    );
-  }
-
-  renderWinner() {
-    const { stateData } = this.props;
-
-    return (
-      <div>
-        STATE: { stateData.state }
-      </div>
-    );
-  }
-
-  renderGame() {
-    const { stateData: {
-      state,
-      team,
-      teams: [ leftTeam, rightTeam ],
-      round: { score, number: roundNumber, questions, errors: [ leftErrors, rightErrors ] }
-    } } = this.props;
-
-    return (
-      <div className='game'>
-        <Scoreboard className='score-row' score={ score }/>
-        <div className='game-row'>
-          <Team className='column-left'
-                round={ roundNumber }
-                active={ team }
-                team={ leftTeam }
-                errors={ leftErrors }/>
-          <Questions className='column-center' questions={ questions }/>
-          <Team className='column-right'
-                round={ roundNumber }
-                active={ team }
-                team={ rightTeam }
-                errors={ rightErrors }/>
-        </div>
-      </div>
-    );
-  }
-
-  renderCheckTeam() {
-    const { stateData } = this.props;
-
-    return (
-      <div>
-        STATE: { stateData.state }
-      </div>
-    );
-  }
-
-  renderInit() {
-    const { stateData } = this.props;
-
-    return (
-      <div>
-        STATE: { stateData.state }
+        { content }
       </div>
     );
   }
