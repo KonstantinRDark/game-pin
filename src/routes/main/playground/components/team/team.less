@@ -4,18 +4,16 @@
   font-family: 'Francois One', sans-serif;
 
   > .round {
-    width: 100%;
-    height: 37.8%;
-    margin-bottom: 20px;
+    width: 98%;
+    height: 40.5%;
+    margin-bottom: 36px;
 
     > .text {
       display: block;
-      margin: 0 18% 10px;
-      -webkit-border-radius: 5px;
-         -moz-border-radius: 5px;
-              border-radius: 5px;
-      font-size: 150px;
-      line-height: 200px;
+      margin: 0 20% 10px;
+      border-radius: 24px;
+      font-size: 161px;
+      line-height: 214px;
       text-align: center;
       color: white;
       background-color: #890003;
@@ -37,17 +35,37 @@
 
   > .errors {
     > .error {
-      width: 45%;
-      height: 60px;
-      margin: 0 auto 1px;
-      background-color: rgb(245, 158, 85);
+      width: 39%;
+      height: 69px;
+      margin: 0px auto 12px;
+      padding: 1px;
+      background-color: black;
       border-radius: 15px;
-      border: 1px solid black;
-      box-shadow: inset 0px 0px 10px 2px rgba(255,255,255,0.8);
+      border-left: 1px solid black;
+      border-bottom: 1px solid black;
+      box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.49);
+
+      > .inner {
+        width: 105%;
+        height: 100%;
+        background-color: #F39C12;
+        border-radius: 15px;
+        box-shadow: inset 2px 4px 7px -1px rgba(255, 255, 255, 0.8);
+        color: #890003;
+        font-size: 136px;
+        line-height: 99px;
+        text-align: center;
+        writing-mode: vertical-lr;
+        overflow: hidden;
+        font-weight: 100;
+      }
 
       &.active{
-        background-color: #FDFD92;
-        box-shadow: inset 0px 0px 7px 5px rgba(255,255,255,0.9);
+        > .inner {
+          background-color: #FF0;
+          box-shadow: inset 0px 0px 15px 6px rgba(243, 156, 18, 0.4);
+          color: #ff0005;
+        }
       }
     }
   }

@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import Score from './../score';
 import './team.less';
 
 export default class Team extends Component {
@@ -37,12 +36,15 @@ export default class Team extends Component {
         <div className={ `round${ !!active && active.id == team.id ? ' active' : '' }` }>
           <span className='text'>{ round }</span>
         </div>
-        <div className='scores'>
-          <Score score={ score }/>
-        </div>
         <div className='errors'>
-          { arr.map((active, i) => ((<div key={ i } className={ `error${ active ? ' active' : '' }` }></div>))) }
+          { arr.map((active, i) => ((
+            <div key={ i }
+                 className={ `error${ active ? ' active' : '' }` }
+            >
+              <div className='inner'>X</div>
+            </div>))) }
         </div>
+
       </div>
     );
   }
