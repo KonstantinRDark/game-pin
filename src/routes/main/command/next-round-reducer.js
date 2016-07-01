@@ -4,7 +4,7 @@ import selectTeamReducer from './select-team-reducer';
 
 export default (state) => {
   let { round, rounds, teams, team } = state;
-  
+
   let hasFirst = teams[ 0 ].id == team.id;
 
   // Определим какой команде начисялть очки и начислим их
@@ -13,7 +13,7 @@ export default (state) => {
     team = { ...team, score: team.score + round.score };
   } else {
     // Иначе начислим им очки другой команде
-    team = hasFirst ? teams[ 0 ] : teams[ 1 ];
+    team = hasFirst ? teams[ 1 ] : teams[ 0 ];
     team = { ...team, score: team.score + round.score };
   }
 

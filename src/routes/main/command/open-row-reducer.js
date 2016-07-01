@@ -1,5 +1,7 @@
 import update from 'react/lib/update';
 import { STATE_GAME } from './constants';
+import answerReducer from './answer-reducer';
+import hasEndRound from './utils/has-end-round';
 
 export default (state, payload) => {
   // Открыть строку
@@ -10,7 +12,7 @@ export default (state, payload) => {
     score += payload.score * state.round.number;
   }
 
-  return update(state, { round: { $set: {
+  round = {
     ...round,
     score,
     errors   : [ ...errors ],
@@ -27,5 +29,17 @@ export default (state, payload) => {
 
       return result;
     })
-  } } });
+  };
+  
+  if (hasEndRound(Object.assign(state, { round }))) {
+    // У команд больше нет попыток - конец раунда
+    const { state:nextState } = answerReducer(state);
+
+    return update(state, {
+      state: { $set: nextState },
+      round: { $set: round }
+    });
+  }
+
+  return update(state, { round: { $set: round } });
 };

@@ -2,28 +2,37 @@ import update from 'react/lib/update';
 import answerReducer from './answer-reducer';
 import swapTeamReducer from './swap-team-reducer';
 import { MAX_ERRORS } from './constants';
+import hasEndRound from './utils/has-end-round';
 
 export default (state) => {
   const hasFirst = state.teams[ 0 ].id === state.team.id;
 
   let { errors:[ firstErrors, secondErrors ], ...round } = state.round;
-  const errors = hasFirst ? firstErrors : secondErrors;
 
-  if ((firstErrors + 1) >= MAX_ERRORS && (secondErrors + 1) >= MAX_ERRORS) {
+  hasFirst ? firstErrors++ : secondErrors++;
+
+  const errorTotal = hasFirst ? firstErrors : secondErrors;
+  round = {
+    errors: [
+      firstErrors,
+      secondErrors
+    ],
+    ...round
+  };
+
+  if (hasEndRound(Object.assign(state, { round }))) {
     // У команд больше нет попыток - конец раунда
-    return answerReducer(state);
+    const { state:nextState } = answerReducer(state);
+
+    return update(state, {
+      state: { $set: nextState },
+      round: { $set: round }
+    });
   }
 
-  if (errors === (MAX_ERRORS - 1)) {
+  if (errorTotal === MAX_ERRORS) {
     // Команда ошиблась последний раз - переход хода
     const { team, teams } = swapTeamReducer(state);
-    round = {
-      errors: [
-        (hasFirst ? MAX_ERRORS : firstErrors),
-        (!hasFirst ? MAX_ERRORS : secondErrors)
-      ],
-      ...round
-    };
 
     return update(state, {
       team : { $set: team },
@@ -33,14 +42,6 @@ export default (state) => {
   }
 
   return update(state, {
-    round: {
-      $set: {
-        errors: [
-          (hasFirst ? firstErrors + 1 : firstErrors),
-          (!hasFirst ? secondErrors + 1 : secondErrors)
-        ],
-        ...round
-      }
-    }
+    round: { $set: round }
   });
 };

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { startGame, selectTeam, showRow, nextRound, toggleTeam, setError, answer } from './../command/action';
+import { startGame, selectTeam, showRow, nextRound, setError, answer } from './../command/action';
 import { GAME_DATA, STATE_CHECK, STATE_GAME, STATE_ANSWER, STATE_WINNER } from './../command/constants';
 import { connect } from 'react-redux';
-import hasAnswerOnly from './../command/utils/has-answer-only';
+import hasEndRound from './../command/utils/has-end-round';
 const disabledAttr = (condition) => {
   let attrs = {};
 
@@ -12,28 +12,6 @@ const disabledAttr = (condition) => {
 
   return attrs;
 };
-const answerBtn = ({ stateData:state }, onClick) => {
-  return (
-    <button type='button'
-            onClick={ onClick }
-            { ...disabledAttr(!hasAnswerOnly(state)) }>Открываем ответы</button>
-  );
-};
-
-const nextRoundBtn = ({ stateData:state }, onClick) => {
-  const { round: { questions } } = state;
-  const hasAllOpen = questions.every(({ isOpen }) => isOpen);
-
-  if (hasAnswerOnly(state)) {
-    return null;  
-  }
-  
-  return (
-    <button type='button'
-            onClick={ onClick }
-            { ...disabledAttr(!hasAllOpen) }>Следующий раунд</button>
-  );
-};
 
 @connect(({ [ GAME_DATA ]:stateData }) => ({ stateData }))
 export default class Controls extends Component {
@@ -41,9 +19,8 @@ export default class Controls extends Component {
   onSelectTeam = (team) => this.props.dispatch(selectTeam(team));
   onShowRow = (row) => this.props.dispatch(showRow(row));
   onNextRound = () => this.props.dispatch(nextRound());
-  onToggleTeam = () => this.props.dispatch(toggleTeam());
   onSetError = () => this.props.dispatch(setError());
-  onSetAnwer = () => this.props.dispatch(answer());
+  onSetAnswer = () => this.props.dispatch(answer());
 
   render() {
     const { className, stateData: { state } } = this.props;
@@ -69,7 +46,7 @@ export default class Controls extends Component {
   }
 
   renderQuestions() {
-    const { stateData:{ state, round: { questions } } } = this.props;
+    const { stateData:{ round: { questions } } } = this.props;
     return (
       <ul>
         { questions.map((question, number) => {
@@ -96,29 +73,29 @@ export default class Controls extends Component {
   }
 
   renderAnswer() {
+    const { round: { questions } } = this.props.stateData;
+    const hasAllOpen = questions.every(({ isOpen }) => isOpen);
+
     return (
       <div>
         { this.renderQuestions() }
-        { answerBtn(this.props, () => this.onSetAnwer()) }
-        { nextRoundBtn(this.props, () => this.onNextRound()) }
+        <button type='button'
+                onClick={ () => this.onNextRound() }
+                { ...disabledAttr(!hasAllOpen) }
+        >Следующий раунд</button>
       </div>
     );
   }
 
   renderGame() {
-    // TODO Продумать каак определять что можно сменить команду или нельзя
-    const { stateData:{ round: { errors } } } = this.props;
-    const hasToggleTeam = errors.every(count => count === 3 || count === 0);
-
     return (
       <div>
         { this.renderQuestions() }
         <button type='button'
                 onClick={ () => this.onSetError() }>Ошибка</button>
         <button type='button'
-                onClick={ () => this.onToggleTeam() }
-                { ...disabledAttr(hasToggleTeam) }>Переход хода</button>
-        { nextRoundBtn(this.props, () => this.onNextRound()) }
+                onClick={ () => this.onSetAnswer() }
+                { ...disabledAttr(!hasEndRound(this.props.stateData)) }>Открываем ответы</button>
       </div>
     );
   }
