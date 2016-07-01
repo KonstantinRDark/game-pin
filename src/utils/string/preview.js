@@ -47,7 +47,7 @@ export function preview(text, length = 500) {
 
       if (!~element.search(/<(?:img|br|hr)/)) {
         if (!~element.indexOf('/')) { // открывающий тег
-          tags.push(`</${element.match(/<((?:\w|\d)+)(?:\s|\/|>)/)[1]}>`);
+          tags.push(`</${ element.match(/<((?:\w|\d)+)(?:\s|\/|>)/)[ 1 ] }>`);
         } else { // закрывающий тег
           tags.pop();
         }
@@ -60,7 +60,7 @@ export function preview(text, length = 500) {
     let symbols = preview.split('');
 
     for (let i = 0, cnt = symbols.length; i != cnt; i++) {
-      let symbol = symbols[i];
+      let symbol = symbols[ i ];
 
       // Сюда попадаем когда разрешенная длинна закончилась
       // Остается закрыть не закрытые теги и вернуть результат

@@ -1,6 +1,6 @@
-import {createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import {callAPIMiddleware} from './middleware/callAPIMiddleware';
+import { callAPIMiddleware } from './middleware/callAPIMiddleware';
 import createReducer from './createReducer';
 let store;
 
@@ -29,8 +29,8 @@ export function configureStore(initialState = {}) {
 export function inject(store, name, asyncReducer) {
   let asyncReducers = store.asyncReducers;
   
-  if (!asyncReducers[name] || asyncReducers[name] !== asyncReducer) {
-    asyncReducers[name] = asyncReducer;
+  if (!asyncReducers[ name ] || asyncReducers[ name ] !== asyncReducer) {
+    asyncReducers[ name ] = asyncReducer;
     store.replaceReducer(createReducer(asyncReducers));
   }
 }

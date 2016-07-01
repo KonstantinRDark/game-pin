@@ -4,9 +4,9 @@ import swapTeamReducer from './swap-team-reducer';
 import { MAX_ERRORS } from './constants';
 
 export default (state) => {
-  const hasFirst = state.teams[0].id === state.team.id;
+  const hasFirst = state.teams[ 0 ].id === state.team.id;
 
-  let { errors:[ firstErrors, secondErrors], ...round } = state.round;
+  let { errors:[ firstErrors, secondErrors ], ...round } = state.round;
   const errors = hasFirst ? firstErrors : secondErrors;
 
   if ((firstErrors + 1) >= MAX_ERRORS && (secondErrors + 1) >= MAX_ERRORS) {
@@ -26,7 +26,7 @@ export default (state) => {
     };
 
     return update(state, {
-      team: { $set: team },
+      team : { $set: team },
       teams: { $set: teams },
       round: { $set: round }
     });

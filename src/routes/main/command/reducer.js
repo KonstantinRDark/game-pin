@@ -20,11 +20,11 @@ import answerReducer from './answer-reducer';
 import showWinnerReducer from './show-winner-reducer';
 
 const init = {
-  state: STATE_INIT,
+  state : STATE_INIT,
   rounds: [],
-  teams: [],
-  team: null,
-  round: null,
+  teams : [],
+  team  : null,
+  round : null,
   winner: null
 };
 

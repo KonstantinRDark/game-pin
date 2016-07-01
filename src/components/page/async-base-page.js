@@ -1,6 +1,4 @@
-'use strict';
 import React, { PropTypes } from 'react';
-
 import BasePage from './base-page';
 import PageLoader from '../PageLoader';
 import ErrorPage from '../ErrorPage';
@@ -34,15 +32,15 @@ export default class AsyncPage extends BasePage {
         body = this.body();
       } catch (err) {
         console.error(err);
-        return (<ErrorPage error={err}/>);
+        return (<ErrorPage error={ err }/>);
       }
     }
 
     return (
       <div className='page-wrapper'>
-        {loader}
-        {meta}
-        {body}
+        { loader }
+        { meta }
+        { body }
       </div>
     );
   }

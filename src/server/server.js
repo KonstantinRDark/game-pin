@@ -1,5 +1,4 @@
 // jscs:disable validateQuoteMarks
-import path from 'path';
 import express from 'express';
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
@@ -14,16 +13,13 @@ import compression from 'compression';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { createMemoryHistory, RouterContext, match } from 'react-router';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import { trigger } from 'redial';
-import { callAPIMiddleware } from '../middleware/callAPIMiddleware';
 import { configureStore } from '../store';
-import Helm from 'react-helmet'; // because we are already using helmet
-import reducer from '../createReducer';
+import Helm from 'react-helmet';
 import createRoutes from '../routes/root';
 import { PageNotFound, ResourceNotFound, InternalError } from './utils/error';
+import api from './api'; // because we are already using helmet
 
 const isDeveloping = process.env.NODE_ENV == 'development';
 const port = process.env.PORT || 5000;
@@ -38,14 +34,14 @@ server.use(hpp());
 
 server.use(helmet.contentSecurityPolicy({
   defaultSrc: [ "'self'" ],
-  scriptSrc: [ "'self'" ],
-  styleSrc: [ "'self'" ],
-  imgSrc: [ "'self'" ],
+  scriptSrc : [ "'self'" ],
+  styleSrc  : [ "'self'" ],
+  imgSrc    : [ "'self'" ],
   connectSrc: [ "'self'", 'ws:' ],
-  fontSrc: [ "'self'" ],
-  objectSrc: [ "'none'" ],
-  mediaSrc: [ "'none'" ],
-  frameSrc: [ "'none'" ]
+  fontSrc   : [ "'self'" ],
+  objectSrc : [ "'none'" ],
+  mediaSrc  : [ "'none'" ],
+  frameSrc  : [ "'none'" ]
 }));
 server.use(helmet.xssFilter());
 server.use(helmet.frameguard('deny'));
@@ -62,17 +58,17 @@ if (isDeveloping) {
   server.use(morgan('dev'));
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
-    publicPath: config.output.publicPath,
+    publicPath : config.output.publicPath,
     contentBase: 'src',
-    stats: {
-      colors: true,
-      hash: false,
-      timings: true,
-      assets: false,
-      children: false,
-      chunks: true,
+    stats      : {
+      colors      : true,
+      hash        : false,
+      timings     : true,
+      assets      : false,
+      children    : false,
+      chunks      : true,
       chunkModules: false,
-      modules: false
+      modules     : false
     }
   });
   server.use(middleware);
@@ -98,28 +94,27 @@ const renderFullPage = (data, initialState, assets) => {
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-         ${head.title.toString()}
+         ${ head.title.toString() }
          <meta name="viewport" content="width=device-width, initial-scale=1" />
          <link rel="shortcut icon" href="/build/static/favicon.ico" type="image/x-icon" />
          <link rel="stylesheet" href="/build/static/styles.css">
-         ${head.meta.toString()}
-         ${head.link.toString()}
+         ${ head.meta.toString() }
+         ${ head.link.toString() }
       </head>
       <body>
         <div id="root"></div>
-        <script>window.INITIAL_STATE = ${JSON.stringify(initialState)};</script>
-        <script src="${ isDeveloping ? '/build/static/vendor.js' : assets.vendor.js}"></script>
-        <script src="${ isDeveloping ? '/build/static/main.js' : assets.main.js}"></script>
+        <script>window.INITIAL_STATE = ${ JSON.stringify(initialState) };</script>
+        <script src="${ isDeveloping ? '/build/static/vendor.js' : assets.vendor.js }"></script>
+        <script src="${ isDeveloping ? '/build/static/main.js' : assets.main.js }"></script>
       </body>
     </html>
   `;
 };
 
 // API
-import api from './api';
 const prefix = '/api/v0';
 api(server, prefix);
-server.get(`${prefix}/*`, (req, res) => ResourceNotFound(res));
+server.get(`${ prefix }/*`, (req, res) => ResourceNotFound(res));
 
 // SSR Logic
 server.get('*', (req, res) => {
@@ -147,8 +142,8 @@ server.get('*', (req, res) => {
 
     // Define locals to be provided to all lifecycle hooks:
     const locals = {
-     path: renderProps.location.pathname,
-     query: renderProps.location.query,
+     path  : renderProps.location.pathname,
+     query : renderProps.location.query,
      params: renderProps.params,
 
      // Allow lifecycle hooks to dispatch Redux actions:
@@ -159,8 +154,8 @@ server.get('*', (req, res) => {
       .then(() => {
         const initialState = store.getState();
         const InitialView = (
-          <Provider store={store}>
-            <RouterContext {...renderProps} />
+          <Provider store={ store }>
+            <RouterContext { ...renderProps } />
           </Provider>
         );
 

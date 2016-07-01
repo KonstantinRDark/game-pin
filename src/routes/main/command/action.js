@@ -10,11 +10,11 @@ import {
 
 export const startGame = (data) => dispatch => {
   dispatch({
-    type: ACTION_START_GAME,
+    type   : ACTION_START_GAME,
     payload: {
       rounds: [
         {
-          name: 'Раунд 1',
+          name     : 'Раунд 1',
           questions: [
             { name: 'Иммунитет', score: 27 },
             { name: 'Здоровый образ жизни', score: 17 },
@@ -25,7 +25,7 @@ export const startGame = (data) => dispatch => {
           ]
         },
         {
-          name: '2',
+          name     : '2',
           questions: [
             { name: 'Раунд 2 Вопрос 1', score: 6 },
             { name: 'Раунд 2 Вопрос 2', score: 5 },
@@ -46,42 +46,42 @@ export const startGame = (data) => dispatch => {
 
 export const selectTeam = (team) => dispatch => {
   dispatch({
-    type: ACTION_SELECT_TEAM,
+    type   : ACTION_SELECT_TEAM,
     payload: team
   });
 };
 
 export const showRow = (row) => dispatch => {
   dispatch({
-    type: ACTION_OPEN_ROW,
+    type   : ACTION_OPEN_ROW,
     payload: row
   });
 };
 
 export const nextRound = () => dispatch => {
   dispatch({
-    type: ACTION_NEXT_ROUND,
+    type   : ACTION_NEXT_ROUND,
     payload: {}
   });
 };
 
 export const setError = () => dispatch => {
   dispatch({
-    type: ACTION_ERROR_QUESTION,
+    type   : ACTION_ERROR_QUESTION,
     payload: {}
   });
 };
 
 export const answer = () => dispatch => {
   dispatch({
-    type: ACTION_ANSWER,
+    type   : ACTION_ANSWER,
     payload: {}
   });
 };
 
 export const toggleTeam = () => dispatch => {
   dispatch({
-    type: ACTION_SWAP_TEAM,
+    type   : ACTION_SWAP_TEAM,
     payload: {}
   });
 };

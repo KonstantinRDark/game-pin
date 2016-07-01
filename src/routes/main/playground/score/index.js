@@ -43,7 +43,7 @@ export default class Score extends Component {
     const { className = '' } = this.props;
 
     return (
-      <div className={`c-score ${className}`}>
+      <div className={ `c-score ${ className }` }>
         <div className='text'>{ this.state.score }</div>
         <div className='cover'></div>
       </div>

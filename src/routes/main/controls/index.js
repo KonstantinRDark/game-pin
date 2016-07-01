@@ -15,9 +15,9 @@ const disabledAttr = (condition) => {
 const answerBtn = ({ stateData:state }, onClick) => {
   return (
     <button type='button'
-            onClick={onClick}
+            onClick={ onClick }
             { ...disabledAttr(!hasAnswerOnly(state)) }>Открываем ответы</button>
-  )
+  );
 };
 
 const nextRoundBtn = ({ stateData:state }, onClick) => {
@@ -30,12 +30,12 @@ const nextRoundBtn = ({ stateData:state }, onClick) => {
   
   return (
     <button type='button'
-            onClick={onClick}
+            onClick={ onClick }
             { ...disabledAttr(!hasAllOpen) }>Следующий раунд</button>
-  )
+  );
 };
 
-@connect(({ [GAME_DATA]:stateData }) => ({ stateData }))
+@connect(({ [ GAME_DATA ]:stateData }) => ({ stateData }))
 export default class Controls extends Component {
   onStartGame = () => this.props.dispatch(startGame());
   onSelectTeam = (team) => this.props.dispatch(selectTeam(team));
@@ -62,7 +62,7 @@ export default class Controls extends Component {
     }
 
     return (
-      <div className={`game-controls ${className}`}>
+      <div className={ `game-controls ${ className }` }>
         { Content }
       </div>
     );
@@ -72,15 +72,15 @@ export default class Controls extends Component {
     const { stateData:{ state, round: { questions } } } = this.props;
     return (
       <ul>
-        {questions.map((question, number) => {
+        { questions.map((question, number) => {
           return (
             <li>
               <button type='button'
-                      onClick={() => this.onShowRow(question)}
-                      { ...disabledAttr(question.isOpen) }>#{number + 1} открыть</button>
+                      onClick={ () => this.onShowRow(question) }
+                      { ...disabledAttr(question.isOpen) }>#{ number + 1 } открыть</button>
             </li>
           );
-        })}
+        }) }
       </ul>
     );
   }
@@ -90,7 +90,7 @@ export default class Controls extends Component {
 
     return (
       <div>
-        STATE: {stateData.state}
+        STATE: { stateData.state }
       </div>
     );
   }
@@ -114,9 +114,9 @@ export default class Controls extends Component {
       <div>
         { this.renderQuestions() }
         <button type='button'
-                onClick={() => this.onSetError()}>Ошибка</button>
+                onClick={ () => this.onSetError() }>Ошибка</button>
         <button type='button'
-                onClick={() => this.onToggleTeam()}
+                onClick={ () => this.onToggleTeam() }
                 { ...disabledAttr(hasToggleTeam) }>Переход хода</button>
         { nextRoundBtn(this.props, () => this.onNextRound()) }
       </div>
@@ -124,12 +124,12 @@ export default class Controls extends Component {
   }
 
   renderCheckTeam() {
-    const { stateData: { teams:[firstTeam, secondTeam] } } = this.props;
+    const { stateData: { teams:[ firstTeam, secondTeam ] } } = this.props;
 
     return (
       <div>
-        <button type='button' onClick={() => this.onSelectTeam(firstTeam)}>Команда: {firstTeam.name}</button>
-        <button type='button' onClick={() => this.onSelectTeam(secondTeam)}>Команда: {secondTeam.name}</button>
+        <button type='button' onClick={ () => this.onSelectTeam(firstTeam) }>Команда: { firstTeam.name }</button>
+        <button type='button' onClick={ () => this.onSelectTeam(secondTeam) }>Команда: { secondTeam.name }</button>
       </div>
     );
   }
@@ -137,7 +137,7 @@ export default class Controls extends Component {
   renderInit() {
     return (
       <div>
-        <button type='button' onClick={this.onStartGame}>Начать игру</button>
+        <button type='button' onClick={ this.onStartGame }>Начать игру</button>
       </div>
     );
   }

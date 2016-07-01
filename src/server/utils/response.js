@@ -3,7 +3,7 @@
 export const ResponseByCriteria = (list, callback) =>
   Promise.resolve(list.filter(el => callback(el)));
 
-export const ResponseById  = (list, id) => {
+export const ResponseById = (list, id) => {
   const find = list.find(el => el.id == id);
 
   if (!find) {
@@ -16,14 +16,14 @@ export const ResponseById  = (list, id) => {
   return Promise.resolve(find);
 };
 
-export const ResponseList  = (list) => Promise.resolve(list);
+export const ResponseList = (list) => Promise.resolve(list);
 
-export const ResponseCount  = (count) => Promise.resolve(count);
+export const ResponseCount = (count) => Promise.resolve(count);
 
-export const ResponsePaginate  = (list, page) =>
+export const ResponsePaginate = (list, page) =>
   Promise.resolve({
-    data: list,
-    page: page || 1,
+    data : list,
+    page : page || 1,
     limit: 12,
     total: {
       count: 10000,

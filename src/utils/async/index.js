@@ -14,14 +14,14 @@ export function async({ key, search, resolve, connect }) {
     }
   });
 
-  const addParams = (callback) => ({ [key]: { data, ...props } }) => {
+  const addParams = (callback) => ({ [ key ]: { data, ...props } }) => {
     if (DEBUG) {
       console.log('@connect', !data ? true : props.isLoading);
     }
 
     return Object.assign(callback({ ...data, ...props }), {
-      error: props.error,
-      isLoading: !data ? true : props.isLoading,
+      error      : props.error,
+      isLoading  : !data ? true : props.isLoading,
       lastFetched: props.lastFetched
     });
   };
@@ -35,7 +35,7 @@ export function async({ key, search, resolve, connect }) {
       return redialConnect(
         addParams((data) => (data)),
         (dispatch, { location: { query: { q, page, limit, ...filters } } }) => ({
-          q, page: !!page ? +page : page, limit: !!limit ? +limit : limit, filters
+          q, page : !!page ? +page : page, limit: !!limit ? +limit : limit, filters
         })
       )(ComposedComponent);
     };

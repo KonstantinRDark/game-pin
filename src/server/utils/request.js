@@ -3,8 +3,8 @@ import { Router } from 'express';
 import { Error } from './error';
 import { Success } from './success';
 
-export const GET = "get";
-export const POST = "post";
+export const GET = 'get';
+export const POST = 'post';
 
 export function methods(...methods) {
   return (target, name, descriptor) => {
@@ -19,11 +19,11 @@ export function route(...uri) {
       target.router = new Router();
     }
 
-    const { __methods = [GET] } = descriptor;
+    const { __methods = [ GET ] } = descriptor;
     const cb = descriptor.value;
 
     descriptor.value = () => {
-      __methods.forEach(method => uri.forEach(uri => target.router[method](uri, (req, res) => {
+      __methods.forEach(method => uri.forEach(uri => target.router[ method ](uri, (req, res) => {
         let promise = cb(req.params);
 
         if (!promise || typeof promise.then !== 'function') {

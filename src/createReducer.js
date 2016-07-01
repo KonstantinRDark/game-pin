@@ -6,7 +6,7 @@ import { combineReducers } from 'redux';
 // added async
 export default function createReducer(asyncReducers) {
   return combineReducers({
-    [GAME_DATA]: mainPageReducer,
+    [ GAME_DATA ]: mainPageReducer,
     ...asyncReducers
   });
 }

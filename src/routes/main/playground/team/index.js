@@ -4,16 +4,16 @@ import './team.less';
 
 export default class Team extends Component {
   static propTypes = {
-    round: PropTypes.number.isRequired,
+    round : PropTypes.number.isRequired,
     active: PropTypes.object,
-    team: PropTypes.object.isRequired,
+    team  : PropTypes.object.isRequired,
     errors: PropTypes.number.isRequired
   };
 
   state = {
-    round: this.props.round,
+    round : this.props.round,
     active: this.props.active,
-    team: this.props.team,
+    team  : this.props.team,
     errors: this.props.errors
   };
 
@@ -32,8 +32,8 @@ export default class Team extends Component {
     ];
 
     return (
-      <div className={`c-team ${className}`}>
-        <div className={`round${!!active && active.id == team.id ? ' active' : '' }`}>
+      <div className={ `c-team ${ className }` }>
+        <div className={ `round${ !!active && active.id == team.id ? ' active' : '' }` }>
           <span className='text'>{ round }</span>
         </div>
         <div className='scores'>
@@ -41,7 +41,7 @@ export default class Team extends Component {
         </div>
         <div className='errors'>
           <div>{ errors }</div>
-          { arr.map((active, i) => ((<div key={ i } className={`error${active ? ' active' : '' }`}></div>))) }
+          { arr.map((active, i) => ((<div key={ i } className={ `error${ active ? ' active' : '' }` }></div>))) }
         </div>
       </div>
     );

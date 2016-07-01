@@ -1,25 +1,24 @@
-'use strict';
 import React from 'react';
 
 export default React.createClass({
 
   style: {
     backgroundColor: '#1f4662',
-    color: '#fff',
-    fontSize: '12px'
+    color          : '#fff',
+    fontSize       : '12px'
   },
 
   headerStyle: {
     backgroundColor: '#193549',
-    padding: '5px 10px',
-    fontFamily: 'monospace',
-    color: '#ffc600'
+    padding        : '5px 10px',
+    fontFamily     : 'monospace',
+    color          : '#ffc600'
   },
 
   preStyle: {
     display: 'block',
     padding: '10px 30px 64px',
-    margin: '0'
+    margin : '0'
   },
 
   getInitialState() {
@@ -36,11 +35,11 @@ export default React.createClass({
 
   render() {
     return (
-      <div style={this.style}>
-        <div style={this.headerStyle} onClick={ this.toggle }>
+      <div style={ this.style }>
+        <div style={ this.headerStyle } onClick={ this.toggle }>
           <strong>Pretty Debug</strong>
         </div>
-        {this.state.show ? <pre style={this.preStyle}>{JSON.stringify(this.props.data, null, 2) }</pre> : false}
+        { this.state.show ? <pre style={ this.preStyle }>{ JSON.stringify(this.props.data, null, 2) }</pre> : false }
       </div>
     );
   }

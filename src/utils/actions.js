@@ -18,7 +18,7 @@ export function payload(callback) {
 const slugToId = (slug) => {
 
   if (typeof slug === 'string' && !!~slug.search(/\d+-.+/)) {
-    slug = slug.split('-')[0];
+    slug = slug.split('-')[ 0 ];
   }
 
   return slug;
@@ -48,7 +48,7 @@ export function action(target, name, descriptor) {
     }
 
     return {
-      types: __action_types,
+      types  : __action_types,
       callAPI: () => __action_callApi(...ids),
       payload: __action_payload(...ids)
     };

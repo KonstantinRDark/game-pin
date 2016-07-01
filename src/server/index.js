@@ -1,4 +1,4 @@
-require("babel-polyfill");
+require('babel-polyfill');
 require('babel-register');
 
 // teaches node.js to load css files

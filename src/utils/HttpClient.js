@@ -8,8 +8,8 @@ function getUrl(path) {
   }
 
   return process.env.WEBSITE_HOSTNAME ?
-    `http://${process.env.WEBSITE_HOSTNAME}${path}` :
-    `http://127.0.0.1:${global.server.get('port')}${path}`;
+    `http://${ process.env.WEBSITE_HOSTNAME }${ path }` :
+    `http://127.0.0.1:${ global.server.get('port') }${ path }`;
 }
 
 function prepareResponse(resolve, reject) {
@@ -20,9 +20,9 @@ function prepareResponse(resolve, reject) {
       reject(err);
     } else {
       let body = res.body;
-      let response = body[RESULT];
+      let response = body[ RESULT ];
 
-      if (body[STATUS] == SUCCESS) {
+      if (body[ STATUS ] == SUCCESS) {
         resolve(response);
       } else {
         reject(response);

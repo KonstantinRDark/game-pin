@@ -19,7 +19,7 @@ export default class Scoreboard extends Component {
     const { className = '' } = this.props;
 
     return (
-      <div className={`c-scoreboard ${className}`}>
+      <div className={ `c-scoreboard ${ className }` }>
         <Score score={ this.state.score }/>
       </div>
     );

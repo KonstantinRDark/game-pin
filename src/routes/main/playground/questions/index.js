@@ -7,8 +7,8 @@ export default class Questions extends Component {
     const { className = '', questions } = this.props;
 
     return (
-      <div className={`c-questions ${className}`}>
-        {questions.map((question, i) => ((<QuestionRow key={ i } number={ ++i } {...question}/>)))}
+      <div className={ `c-questions ${ className }` }>
+        { questions.map((question, i) => ((<QuestionRow key={ i } number={ ++i } { ...question }/>))) }
       </div>
     );
   }

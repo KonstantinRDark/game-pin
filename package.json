@@ -48,9 +48,6 @@
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^4.0.0",
     "es6-promise": "^3.1.2",
-    "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^5.0.1",
-    "eslint-plugin-react": "3.16.1",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^1.0.1",
     "fbjs": "^0.7.2",
@@ -85,5 +82,9 @@
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.7.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-eslint": "^6.1.0",
+    "eslint": "^2.13.1",
+    "eslint-plugin-react": "^5.2.2"
+  }
 }

@@ -13,12 +13,12 @@ export default class App extends Component {
   };
 
   render() {
-    const  { children } = this.props;
+    const { children } = this.props;
     return (
       <div className='app'>
-        <Helmet title={META_BASE_TITLE} titleTemplate={META_BASE_TITLE_TEMPLATE}/>
+        <Helmet title={ META_BASE_TITLE } titleTemplate={ META_BASE_TITLE_TEMPLATE }/>
         <div className='app-container'>
-          {children}
+          { children }
         </div>
       </div>
     );

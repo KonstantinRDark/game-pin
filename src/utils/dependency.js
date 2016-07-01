@@ -1,14 +1,14 @@
-"use strict";
+'use strict';
 
 export function dependency({ load }) {
   return (target, name, descriptor) => {
     let hasWin;
-    try { hasWin = !!window; } catch (e) { /* err */ }
+    try { hasWin = !!window } catch (e) { /* err */ }
 
     let { prototype } = target;
     let { render, componentWillMount } = prototype;
 
-    if (!componentWillMount) { componentWillMount = () => {}; }
+    if (!componentWillMount) { componentWillMount = () => {} }
 
     if (hasWin) {
       prototype.componentWillMount = function () {
@@ -24,7 +24,7 @@ export function dependency({ load }) {
     prototype.render = function () {
       let hasWait = !hasWin || !this.__loaded;
       let body = hasWait ? 'wait loading....' : render.call(this);
-      return (<div setClass={hasWait ? 'loading' : ''}>{body}</div>);
+      return (<div setClass={ hasWait ? 'loading' : '' }>{ body }</div>);
     };
 
     return descriptor;

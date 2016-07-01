@@ -13,7 +13,7 @@ export default (state, payload) => {
   return update(state, { round: { $set: {
     ...round,
     score,
-    errors: [ ...errors ],
+    errors   : [ ...errors ],
     questions: questions.map(question => {
       let result = { ...question };
 

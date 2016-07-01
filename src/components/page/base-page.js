@@ -1,8 +1,5 @@
-'use strict';
-
 import React, { PropTypes, Component } from 'react';
 import Helmet from 'react-helmet';
-
 import NotFound from './../NotFound';
 import EmptyBody from './../EmptyBody';
 
@@ -34,8 +31,8 @@ export default class BasePage extends Component {
   wrapper() {
     return (
       <div className='page-wrapper'>
-        {this.meta()}
-        {this.body()}
+        { this.meta() }
+        { this.body() }
       </div>
     );
   }
@@ -49,7 +46,7 @@ export default class BasePage extends Component {
       return '';
     }
 
-    return <Helmet {...options} />;
+    return <Helmet { ...options } />;
   }
 
   body() {

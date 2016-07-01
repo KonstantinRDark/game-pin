@@ -1,12 +1,12 @@
 import 'babel-polyfill';
-import {trigger} from 'redial';
+import { trigger } from 'redial';
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import Router from 'react-router/lib/Router';
 import match from 'react-router/lib/match';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import createRoutes from './routes/root';
-import {configureStore} from './store';
+import { configureStore } from './store';
 import browserHistory from 'react-router/lib/browserHistory';
 // Your app's reducer and routes:
 
@@ -16,7 +16,7 @@ const initialState = window.INITIAL_STATE || {};
 const store = configureStore(initialState);
 const { dispatch } = store;
 const { pathname, search, hash, host } = window.location;
-const location = `${pathname}${search}${hash}`;
+const location = `${ pathname }${ search }${ hash }`;
 const container = document.getElementById('root');
 const routes = createRoutes(store, pathname);
 
@@ -24,8 +24,8 @@ const routes = createRoutes(store, pathname);
 match({ routes, location }, () => {
   // Render app with Redux and router context to container element:
   render((
-    <Provider store={store}>
-        <Router history={browserHistory} routes={routes} />
+    <Provider store={ store }>
+        <Router history={ browserHistory } routes={ routes } />
     </Provider>
   ), container);
 });
@@ -38,8 +38,8 @@ browserHistory.listen(location => {
 
     // Define locals to be provided to all lifecycle hooks:
     const locals = {
-        path: renderProps.location.pathname,
-        query: renderProps.location.query,
+        path  : renderProps.location.pathname,
+        query : renderProps.location.query,
         params: renderProps.params,
 
         // Allow lifecycle hooks to dispatch Redux actions:

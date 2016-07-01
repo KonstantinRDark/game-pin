@@ -6,7 +6,7 @@ import Scoreboard from './scoreboard';
 import Team from './team';
 import './playground.less';
 
-@connect(({ [GAME_DATA]:stateData }) => ({ stateData }))
+@connect(({ [ GAME_DATA ]:stateData }) => ({ stateData }))
 export default class Playground extends Component {
   render() {
     const { className, stateData: { state } } = this.props;
@@ -23,7 +23,7 @@ export default class Playground extends Component {
     }
 
     return (
-      <div className={`playground ${className}`}>
+      <div className={ `playground ${ className }` }>
         { Content }
       </div>
     );
@@ -34,7 +34,7 @@ export default class Playground extends Component {
 
     return (
       <div>
-        STATE: {stateData.state}
+        STATE: { stateData.state }
       </div>
     );
   }
@@ -72,7 +72,7 @@ export default class Playground extends Component {
 
     return (
       <div>
-        STATE: {stateData.state}
+        STATE: { stateData.state }
       </div>
     );
   }
@@ -82,7 +82,7 @@ export default class Playground extends Component {
 
     return (
       <div>
-        STATE: {stateData.state}
+        STATE: { stateData.state }
       </div>
     );
   }
