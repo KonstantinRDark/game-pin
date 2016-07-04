@@ -1,5 +1,5 @@
 import update from 'react/lib/update';
-import { STATE_CHECK } from './constants';
+import { STATE_CHECK } from './../constants';
 const getRound = ({ name, score = 0, questions }) => ({
   name,
   score,

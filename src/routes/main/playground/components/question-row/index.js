@@ -1,4 +1,7 @@
+// Базовые классы
 import React from 'react';
+
+// Стили
 import './question-row.less';
 
 const QuestionRow = ({ number, isOpen, name, score }) =>

@@ -1,5 +1,8 @@
+// Базовые классы
 import React, { PropTypes, Component } from 'react';
-import { startGame } from './../command/action';
+
+// Инициаторы действий
+import startGame from './../command/actions/start-game';
 
 export default class ControlsInit extends Component {
   static propTypes = {

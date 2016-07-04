@@ -1,5 +1,8 @@
+// Базовые классы
 import React, { PropTypes, Component } from 'react';
-import { selectTeam } from './../command/action';
+
+// Инициаторы действий
+import selectTeam from './../command/actions/select-team';
 
 export default class ControlsSelectTeam extends Component {
   static propTypes = {

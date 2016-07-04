@@ -1,12 +1,15 @@
+// Базовые классы
 import React, { PropTypes, Component } from 'react';
-import { showRow } from './../../command/action';
+
+// Инициаторы действий
+import openQuestion from './../../command/actions/open-question';
 import disabledAttr from './../utils/disabled-attr';
 
 const QuestionRow = dispatch => (question, number) => {
   return (
     <li>
       <button type='button'
-              onClick={ () => dispatch(showRow(question)) }
+              onClick={ () => dispatch(openQuestion(question)) }
               { ...disabledAttr(question.isOpen) }>#{ number + 1 } открыть</button>
     </li>
   );

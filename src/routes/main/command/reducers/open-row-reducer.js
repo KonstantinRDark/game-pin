@@ -1,7 +1,7 @@
 import update from 'react/lib/update';
-import { STATE_GAME } from './constants';
+import { STATE_GAME } from './../constants';
 import answerReducer from './answer-reducer';
-import hasEndRound from './utils/has-end-round';
+import hasEndRound from './../utils/has-end-round';
 
 export default (state, payload) => {
   // Открыть строку

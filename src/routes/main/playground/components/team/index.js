@@ -1,4 +1,9 @@
+// Базовые классы
 import React, { PropTypes, Component } from 'react';
+
+// Компоненты для отрисовки страницы
+
+// Стили
 import './team.less';
 
 export default class Team extends Component {

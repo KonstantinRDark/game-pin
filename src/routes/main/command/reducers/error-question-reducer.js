@@ -1,8 +1,8 @@
 import update from 'react/lib/update';
 import answerReducer from './answer-reducer';
 import swapTeamReducer from './swap-team-reducer';
-import { MAX_ERRORS } from './constants';
-import hasEndRound from './utils/has-end-round';
+import { MAX_ERRORS } from './../constants';
+import hasEndRound from './../utils/has-end-round';
 
 export default (state) => {
   const hasFirst = state.teams[ 0 ].id === state.team.id;

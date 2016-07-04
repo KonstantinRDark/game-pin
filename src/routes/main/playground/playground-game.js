@@ -1,9 +1,13 @@
+// Базовые классы
 import React, { Component } from 'react';
+
+// Компоненты для отрисовки страницы
 import Questions from './components/questions';
 import Scoreboard from './components/scoreboard';
 import Team from './components/team';
 import Score from './components/score';
-import './playground.less';
+
+// Стили
 
 export default class PlaygroundGame extends Component {
   render() {

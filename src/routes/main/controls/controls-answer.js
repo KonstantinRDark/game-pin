@@ -1,6 +1,11 @@
+// Базовые классы
 import React, { PropTypes, Component } from 'react';
-import { nextRound } from './../command/action';
+
+// Инициаторы действий
+import nextRound from './../command/actions/next-round';
 import disabledAttr from './utils/disabled-attr';
+
+// Компоненты для отрисовки страницы
 import Questions from './components/questions';
 
 export default class ControlsAnswer extends Component {

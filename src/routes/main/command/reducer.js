@@ -2,21 +2,24 @@ import {
   STATE_INIT,
   ACTION_START_GAME,
   ACTION_SELECT_TEAM,
-  ACTION_SWAP_TEAM,
-  ACTION_OPEN_ROW,
+  ACTION_TOGGLE_TEAM,
+  ACTION_OPEN_QUESTION,
   ACTION_ERROR_QUESTION,
   ACTION_NEXT_ROUND,
   ACTION_ANSWER,
   ACTION_SHOW_WINNER
 } from './constants';
-import startGameReducer from './start-game-reducer';
-import selectTeamReducer from './select-team-reducer';
-import swapTeamReducer from './swap-team-reducer';
-import openRowReducer from './open-row-reducer';
-import errorQuestionReducer from './error-question-reducer';
-import nextRoundReducer from './next-round-reducer';
-import answerReducer from './answer-reducer';
-import showWinnerReducer from './show-winner-reducer';
+
+import {
+  startGameReducer,
+  selectTeamReducer,
+  swapTeamReducer,
+  openRowReducer,
+  errorQuestionReducer,
+  nextRoundReducer,
+  answerReducer,
+  showWinnerReducer,
+} from './reducers';
 
 const init = {
   state : STATE_INIT,
@@ -37,11 +40,11 @@ export default function (state = init, { type, payload }) {
       return selectTeamReducer(state, payload);
 
     // Переход хода к другой команде
-    case ACTION_SWAP_TEAM:
+    case ACTION_TOGGLE_TEAM:
       return swapTeamReducer(state);
 
     // Открыть строку
-    case ACTION_OPEN_ROW:
+    case ACTION_OPEN_QUESTION:
       return openRowReducer(state, payload);
 
     // Отвечающая команда ошиблась

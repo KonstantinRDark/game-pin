@@ -1,13 +1,13 @@
 // Базовые классы
 import React, { PropTypes } from 'react';
 import BasePage from './../../components/page/base-page';
-import Playground from './playground';
-import Controls from './controls';
-import './main.less';
 
 // Компоненты для отрисовки страницы
+import Playground from './playground';
+import Controls from './controls';
 
 // Стили
+import './main.less';
 
 export default class extends BasePage {
   /**

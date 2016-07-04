@@ -1,5 +1,5 @@
 import update from 'react/lib/update';
-import { STATE_CHECK, STATE_WINNER } from './constants';
+import { STATE_CHECK, STATE_WINNER } from './../constants';
 import selectTeamReducer from './select-team-reducer';
 
 export default (state) => {

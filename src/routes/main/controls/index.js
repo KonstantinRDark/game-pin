@@ -1,11 +1,21 @@
+// Базовые классы
 import React, { Component } from 'react';
-import { GAME_DATA, STATE_CHECK, STATE_GAME, STATE_ANSWER, STATE_WINNER } from './../command/constants';
 import { connect } from 'react-redux';
+
+// Компоненты для отрисовки страницы
 import ControlsInit from './controls-init';
 import ControlsSelectTeam from './controls-select-team';
 import ControlsGame from './controls-game';
 import ControlsAnswer from './controls-answer';
 import ControlsWinner from './controls-winner';
+
+// Константы
+import {
+  GAME_DATA,
+  STATE_CHECK, STATE_GAME, STATE_ANSWER, STATE_WINNER
+} from './../command/constants';
+
+// Стили
 
 @connect(({ [ GAME_DATA ]:stateData }) => ({ stateData }))
 export default class Controls extends Component {

@@ -1,5 +1,5 @@
 import update from 'react/lib/update';
-import { STATE_CHECK, STATE_GAME } from './constants';
+import { STATE_CHECK, STATE_GAME } from './../constants';
 
 export default (state, nextTeam) => {
   let { team:nowTeam, teams: [ firstTeam, secondTeam ] } = state;

@@ -1,6 +1,11 @@
+// Базовые классы
 import React, { PropTypes, Component } from 'react';
-import './questions.less';
+
+// Компоненты для отрисовки страницы
 import QuestionRow from './../question-row';
+
+// Стили
+import './questions.less';
 
 export default class Questions extends Component {
   static propTypes = {

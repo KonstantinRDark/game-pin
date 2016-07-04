@@ -1,3 +1,4 @@
+// Базовые классы
 import React, { PropTypes, Component } from 'react';
 
 export default class ControlsWinner extends Component {

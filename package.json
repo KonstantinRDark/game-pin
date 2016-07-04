@@ -1,12 +1,13 @@
 {
-  "name": "flavors-frontend",
+  "name": "game-pin",
   "version": "1.0.0",
-  "description": "Экспериментальное изоморфное приложение на React, Redux, React Router, Redial, Express, Webpack.",
+  "description": "Игра 100 к 1",
   "main": "index.js",
   "scripts": {
     "test": "npm run build && cross-env NODE_ENV=test ./node_modules/mocha/bin/mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
-    "start": "cross-env NODE_ENV=development node ./src/server",
+    "start": "npm run start:prod",
+    "start:dev": "cross-env NODE_ENV=development node ./src/server",
     "start:prod": "cross-env NODE_ENV=production node ./src/server",
     "build:start": "npm run build && cross-env NODE_ENV=production node ./src/server",
     "build": "npm run clean && webpack -p --config ./webpack.config.prod.js",

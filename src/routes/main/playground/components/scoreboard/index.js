@@ -1,5 +1,10 @@
+// Базовые классы
 import React, { PropTypes, Component } from 'react';
+
+// Компоненты для отрисовки страницы
 import Score from './../score';
+
+// Стили
 import './scoreboard.less';
 
 export default class Scoreboard extends Component {

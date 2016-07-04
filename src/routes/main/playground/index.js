@@ -1,9 +1,14 @@
+// Базовые классы
 import React, { Component } from 'react';
 import { GAME_DATA, STATE_CHECK, STATE_GAME, STATE_ANSWER, STATE_WINNER } from './../command/constants';
 import { connect } from 'react-redux';
+
+// Компоненты для отрисовки страницы
 import PlaygroundInit from './playground-init';
 import PlaygroundGame from './playground-game';
 import PlaygroundWinner from './playground-winner';
+
+// Стили
 import './playground.less';
 
 @connect(({ [ GAME_DATA ]:stateData }) => ({ stateData }))
